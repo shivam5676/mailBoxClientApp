@@ -6,7 +6,9 @@ const Signup = () => {
   const passwordHandler = useRef();
   const confirmPasswordHandler = useRef();
   const submitDataHandler = (event) => {
+
     event.preventDefault();
+    
     if (
       passwordHandler.current.value !== confirmPasswordHandler.current.value
     ) {
