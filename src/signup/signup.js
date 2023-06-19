@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Button, Container } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 const Signup = () => {
   const emailHandler = useRef();
   const passwordHandler = useRef();
@@ -56,8 +58,9 @@ const Signup = () => {
           ref={confirmPasswordHandler}
         ></input>
         <Button variant="primary" onClick={submitDataHandler}>
-          SUBMIT
+          SIGNUP
         </Button>
+       <Link to="/auth">login page</Link>
       </div>
     </form>
   );

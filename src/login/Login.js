@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "react-bootstrap";
-
+import { Link,Redirect } from "react-router-dom";
 const Login = () => {
-    const emailHandler = useRef ();
+  const [loginIsSuccessful,setLoginIsSuccessful]=useState(localStorage.getItem("key"))
+    console.log(loginIsSuccessful)
+  const emailHandler = useRef ();
     const passwordHandler = useRef();
     const LoginDataHandler=(event)=>{
         event.preventDefault();
@@ -29,10 +31,14 @@ const Login = () => {
           .then((response)=>{
               console.log(response)
               localStorage.setItem("key",response.idToken)
+              setLoginIsSuccessful(true)
           })
           .catch((err)=>{
               console.log(err)
           })
+    }
+    if(loginIsSuccessful){
+     return <Redirect to="/welcome"></Redirect>
     }
   return (
     <form>
@@ -46,8 +52,9 @@ const Login = () => {
         placeholder="passsword" ref={passwordHandler}
       ></input>
        <Button variant="primary" onClick={LoginDataHandler}>
-          SUBMIT
+          LOGIN
         </Button>
+        <Link to="/">signup</Link>
     </form>
   );
 };
