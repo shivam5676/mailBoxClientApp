@@ -14,6 +14,7 @@ const Welcome = () => {
       recieverEmail: recieverEmailIdRef.current.value,
       subject: subjectRef.current.value,
       content: editor.current.value,
+      senderEmail:senderMail
     };
     console.log(myobj);
     fetch(
@@ -39,7 +40,7 @@ const Welcome = () => {
             .replace("@", "")}/sent.json`,
           {
             method: "POST",
-            body:JSON.stringify(response)
+            body:JSON.stringify(myobj)
           }
         )
           .then((response) => {
