@@ -6,6 +6,7 @@ import Login from "./login/Login";
 import Welcome from "./Welcome/Welcome";
 
 function App() {
+  
   return (
     <Switch>
       <Route path="/auth">
