@@ -27,7 +27,7 @@ const sentMailSlice = createSlice({
 
 const allMailSlice = createSlice({
   name: "All Mail",
-  initialState: { allmail: [] },
+  initialState: { allmail: [],unread:0 },
   reducers: {
     allMailList(state, action) {
       console.log("added");
@@ -38,6 +38,9 @@ const allMailSlice = createSlice({
         state.allmail.push(newItem);
       }
     },
+    unreadMail(state,action){
+      state.unread=action.payload;
+    }
   },
 });
 
