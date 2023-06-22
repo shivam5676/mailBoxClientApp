@@ -16,6 +16,12 @@ const sentMailSlice = createSlice({
         state.sentmail.push(newItem);
       }
     },
+    deleteSentMail(state, action) {
+      const newArray = state.sentmail.filter(
+        (currentitem) => currentitem.id !== action.payload
+      );
+      state.sentmail=newArray
+    },
   },
 });
 
@@ -37,11 +43,11 @@ const allMailSlice = createSlice({
 
 const readMailSlice = createSlice({
   name: "read Mail",
-  initialState: { readmail: []},
+  initialState: { readmail: [] },
   reducers: {
     readMailList(state, action) {
-      console.log("read")
-      state.readmail=action.payload
+      console.log("read");
+      state.readmail = action.payload;
     },
   },
 });
@@ -51,10 +57,14 @@ const readMailSlice = createSlice({
 // })
 
 const mailRedux = configureStore({
-  reducer: { sent: sentMailSlice.reducer, all: allMailSlice.reducer ,reads:readMailSlice.reducer},
+  reducer: {
+    sent: sentMailSlice.reducer,
+    all: allMailSlice.reducer,
+    reads: readMailSlice.reducer,
+  },
 });
 
 export const sentMailSliceActions = sentMailSlice.actions;
 export const allMailSliceActions = allMailSlice.actions;
-export const readMailSliceActions=readMailSlice.actions;
+export const readMailSliceActions = readMailSlice.actions;
 export default mailRedux;
