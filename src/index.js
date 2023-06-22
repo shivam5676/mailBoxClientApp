@@ -11,13 +11,13 @@ import mailRedux from "./store/mailRedux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
+  
     <Provider store={mailRedux}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

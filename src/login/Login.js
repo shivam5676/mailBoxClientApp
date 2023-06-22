@@ -31,6 +31,7 @@ const Login = () => {
           .then((response)=>{
               console.log(response)
               localStorage.setItem("key",response.idToken)
+              localStorage.setItem("user",response.email)
               setLoginIsSuccessful(true)
           })
           .catch((err)=>{
@@ -38,7 +39,7 @@ const Login = () => {
           })
     }
     if(loginIsSuccessful){
-     return <Redirect to="/welcome"></Redirect>
+     return <Redirect to="/inbox"></Redirect>
     }
   return (
     <form>
