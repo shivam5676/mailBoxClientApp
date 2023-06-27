@@ -54,20 +54,30 @@ const readMailSlice = createSlice({
     },
   },
 });
-// const ProfileSlice=createSlice({
-//   name:"sender email and profile data",
-//   initialState:{}
-// })
+const LoggedInSlice=createSlice({
+  name:"user logged in or not",
+  initialState:{loggedIn:false},
+  reducers:{userLogIn(state){
+  state.loggedIn=true
+}
+,
+userLogOut(state){
+  state.loggedIn=false
+}}
+
+})
 
 const mailRedux = configureStore({
   reducer: {
     sent: sentMailSlice.reducer,
     all: allMailSlice.reducer,
     reads: readMailSlice.reducer,
+    logIn:LoggedInSlice.reducer
   },
 });
 
 export const sentMailSliceActions = sentMailSlice.actions;
 export const allMailSliceActions = allMailSlice.actions;
 export const readMailSliceActions = readMailSlice.actions;
+export const LoggedInSliceActions=LoggedInSlice.actions
 export default mailRedux;

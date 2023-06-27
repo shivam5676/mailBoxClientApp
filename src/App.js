@@ -1,52 +1,119 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import "./App.css";
-import Signup from "./signup/signup.js";
-import Login from "./login/Login";
-import Welcome from "./Welcome/Welcome";
-import NavigationBar from "./navigationBar/navigationBar";
-import ComposeMail from "./sendMail/ComposeMail";
-import SentMailListPrint from "./sendMail/SentMailListPrint";
-import ReadMessage from "./readMessage/ReadMessage";
+import Signup from "./components/signup/signup.js";
+import Login from "./components/login/Login";
+
+import NavigationBar from "./components/navigationBar/navigationBar";
+import ComposeMail from "./components/login/sendMail/ComposeMail";
+import SentMailListPrint from "./components/login/sendMail/SentMailListPrint";
+import ReadMessage from "./components/readMessage/ReadMessage";
 import AllMail from "./AllMail/AllMail";
+import { useDispatch, useSelector } from "react-redux";
+import { LoggedInSliceActions } from "./store/mailRedux";
+import { Fragment, useEffect } from "react";
+import LogOut from "./components/logOut/LogOut";
+import ProjectFeature from "./components/project feature/ProjectFeature";
+import Contact from "./Contact";
 
 function App() {
+  const loginState = useSelector((state) => state.logIn.loggedIn);
+  console.log(loginState);
+  const dispatch = useDispatch();
+const loggedIn = localStorage.getItem("user");
+  useEffect(() => {
+    
+    if (loggedIn) {
+      dispatch(LoggedInSliceActions.userLogIn());
+    }
+  }, []);
   return (
-    <div>
-      {" "}
-      <div
-        style={{
-          display: "inline-flex",
-          width: "20rem",
-          backgroundColor: "lightblue",
-          marginRight:"50px"
-        }}
-      >
-        <NavigationBar></NavigationBar>
+    <Fragment>
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <div>
+            <Navbar.Brand href="/inbox"><b>In-Mail</b></Navbar.Brand>
+          </div>
+          <div>
+            <Nav className="me-auto">
+              <div style={{backgroundColor:"white",fontStyle:"oblique",}}><b>{loggedIn}</b></div>
+              <div style={{marginLeft:"10px"}}><Nav.Link href="/contact"><b>Contact us</b> </Nav.Link></div>
+              
+              <div style={{marginLeft:"10px"}}><Nav.Link href="/features"><b>Project Features</b></Nav.Link></div> 
+              {loginState ? <div style={{marginLeft:"10px"}}> <Nav.Link href="/profile"><b>Profile</b></Nav.Link></div> : ""}
+              {loginState ? <div style={{marginLeft:"10px"}}> <LogOut></LogOut></div> : ""}
+            </Nav>
+          </div>
+        </Container>
+      </Navbar>
+      <div>
+        {" "}
+        <div
+          style={{
+            display: "inline-flex",
+            width: "20rem",
+            backgroundColor: "lightblue",
+            marginRight: "50px",
+            marginLeft:"10px"
+          }}
+        >
+          {loginState ? <NavigationBar></NavigationBar> : ""}
+        </div>
+        <div
+          style={{
+            display: "inline-flex",
+            width: "70rem",
+            backgroundColor: "honeydew",
+            marginTop:"10px"
+          }}
+        >
+          <Switch>
+            {loginState ? (
+              <Route path="/compose">
+                <ComposeMail></ComposeMail>
+              </Route>
+            ) : (
+              ""
+            )}
+            {loginState ? (
+              <Route path="/sent">
+                <SentMailListPrint></SentMailListPrint>
+              </Route>
+            ) : (
+              ""
+            )}
+            {loginState ? (
+              <Route path="/inbox" exact>
+                <AllMail></AllMail>
+              </Route>
+            ) : (
+              ""
+            )}
+            {loginState ? (
+              <Route path="/inbox/:type/:email/:id" exact>
+                <ReadMessage></ReadMessage>
+              </Route>
+            ) : (
+              ""
+            )}
+            <Route path="/features">
+              <ProjectFeature></ProjectFeature>
+            </Route>
+            <Route path="/contact">
+             <Contact></Contact>
+            </Route>
+
+            <Route path="/signup">
+              <Signup></Signup>
+            </Route>
+            <Route path="/">
+             {!loginState?<Login></Login>:<Redirect to="/inbox"></Redirect>} 
+            </Route>
+          </Switch>
+        </div>
+       
       </div>
-      <div style={{ display: "inline-flex", width: "70rem",backgroundColor:"honeydew" }}>
-        <Switch>
-          <Route path="/compose">
-            <ComposeMail></ComposeMail>
-          </Route>
-          <Route path="/sent">
-            <SentMailListPrint></SentMailListPrint>
-          </Route>
-          <Route path="/auth">
-            <Login></Login>
-          </Route>
-          <Route path="/inbox" exact>
-            <AllMail></AllMail>
-          </Route>
-          <Route path="/inbox/:type/:email/:id">
-            <ReadMessage></ReadMessage>
-          </Route>
-          <Route path="/" exact>
-            <Signup></Signup>
-          </Route>
-        </Switch>
-      </div>
-    </div>
+    </Fragment>
   );
 }
 

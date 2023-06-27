@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap"
 import { useDispatch } from "react-redux";
-import { sentMailSliceActions } from "../store/mailRedux";
+import { sentMailSliceActions } from "../../../store/mailRedux";
 
 const DeleteEmail=(props)=>{
     const dispatch=useDispatch()

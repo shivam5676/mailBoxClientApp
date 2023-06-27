@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import React, { useState, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { useDispatch, useSelector } from "react-redux";
-import { sentMailSliceActions } from "../store/mailRedux";
+import { sentMailSliceActions } from "../../../store/mailRedux";
 const ComposeMail = () => {
   const dispatch = useDispatch();
   const editor = useRef(null);
@@ -12,23 +12,26 @@ const ComposeMail = () => {
   const subjectRef = useRef("");
   const mailDataHandler = (event) => {
     event.preventDefault();
+    if(!(recieverEmailRef.current.value).includes("@")){
+      alert("please enter valid email id")
+      return;
+    }
     const senderEmail = localStorage.getItem("user");
-    const senderName="Shivam singh"
-    const recieverName="Dummy person"
+    const senderName = "Shivam singh";
+    const recieverName = "Dummy person";
     const recieverEmail = recieverEmailRef.current.value;
     const subject = subjectRef.current.value;
     const emailData = editor.current.value;
     const myobj = {
-      senderName:senderName,
-      recieverName:recieverName,
+      senderName: senderName,
+      recieverName: recieverName,
       sender: senderEmail,
       reciever: recieverEmail,
       subject: subject,
       message: emailData,
-      read:false
+      read: false,
     };
-    console.log(myobj);
-    // dispatch(sentMailSliceActions.sentMailList(myobj));
+
 
     fetch(
       `https://mailboxclient-e8125-default-rtdb.firebaseio.com/reciever/${recieverEmail
@@ -74,6 +77,7 @@ const ComposeMail = () => {
             if (!res.ok) {
               throw new Error("post request failedin sender endpoint");
             } else {
+              alert("email sent successfully");
               return res.json();
             }
           })
@@ -98,18 +102,18 @@ const ComposeMail = () => {
   // console.log(sentList);
 
   return (
-    <div style={{ width: "80rem" }}>
+    <div style={{ width: "80rem", height: "0rem" }}>
       <form>
         <input
           placeholder="to"
-          style={{ width: "80rem" }}
+          style={{ width: "80rem", marginBottom: "10px" }}
           ref={recieverEmailRef}
           required
         ></input>
 
         <input
           placeholder="subject"
-          style={{ width: "80rem" }}
+          style={{ width: "80rem", marginBottom: "10px" }}
           ref={subjectRef}
           required
         ></input>
@@ -119,7 +123,11 @@ const ComposeMail = () => {
           value={content}
           onChange={(newContent) => setContent(newContent)}
         />
-        <Button onClick={mailDataHandler}>SEND</Button>
+        <div style={{ marginTop: "10px" }}> 
+          {" "}
+
+          <Button onClick={mailDataHandler}>SEND</Button>
+        </div>
       </form>
     </div>
   );

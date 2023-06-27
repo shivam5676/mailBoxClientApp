@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AllMail = () => {
-  const RecieverEmail = "shivam@gmail.com".replace("@", "").replace(".", "");
+  let RecieverEmail = localStorage.getItem("user");
+  if (RecieverEmail) {
+    RecieverEmail = RecieverEmail.replace("@", "").replace(".", "");
+  }
+
   const dispatch = useDispatch();
   //   console.log(senderEmail);
   useEffect(() => {
@@ -25,13 +29,13 @@ const AllMail = () => {
         })
         .then((response) => {
           console.log(response);
-          let count=0;
+          let count = 0;
           if (response !== null) {
             Object.values(response).map((currentitem) => {
               dispatch(allMailSliceActions.allMailList(currentitem));
               if (currentitem.read === false) {
                 count++;
-                dispatch(allMailSliceActions.unreadMail(count))
+                dispatch(allMailSliceActions.unreadMail(count));
               }
             });
           }
