@@ -45,64 +45,86 @@ const Signup = () => {
   };
   return (
     <div>
-      <h3>SIGNUP PAGE</h3>
-      <form style={{ display: "block" }}>
-        <div style={{ display: "block" }}>
-          <div>
-            <input
-              type="email"
-              placeholder="EMAIL"
-              ref={emailHandler}
-              style={{
-                backgroundColor: "black",
-                color: "white",
+      <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
+        <b
+          style={{
+            backgroundColor: "yellow",
+            boxShadow: "10px 7px 10px black",
+            borderRadius: "10px",
+          }}
+        >
+          SIGNUP PAGE
+        </b>
+      </h3>
+      <div
+        style={{
+          backgroundColor: "yellowgreen",
+          color: "white",
 
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-            ></input>
-          </div>
-          <div>
-            {" "}
-            <input
-              type="password"
-              placeholder="PASSWORD"
-              ref={passwordHandler}
-              style={{
-                backgroundColor: "black",
-                color: "white",
+          width: "55rem",
+          margin: "10px 30px 10px 120px",
+          boxShadow: "10px 7px 10px black",
+          borderRadius: "10px",
+        }}
+      >
+        <form style={{ display: "block" }}>
+          <div style={{ display: "block" }}>
+            <div>
+              <input
+                type="email"
+                placeholder="EMAIL"
+                ref={emailHandler}
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
 
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-            ></input>
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="CONFIRM PASSWORD"
-              ref={confirmPasswordHandler}
-              style={{
-                backgroundColor: "black",
-                color: "white",
-
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-            ></input>
-          </div>
-          <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
-            {" "}
-            <Button variant="primary" onClick={submitDataHandler}>
-              SIGNUP
-            </Button>
-            <b style={{ margin: "10px" }}>
+                  width: "40rem",
+                  margin: "10px 0px 10px 120px",
+                }}
+              ></input>
+            </div>
+            <div>
               {" "}
-              <Link to="/auth">Already have an Account! Login</Link>
-            </b>
+              <input
+                type="password"
+                placeholder="PASSWORD"
+                ref={passwordHandler}
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+
+                  width: "40rem",
+                  margin: "10px 0px 10px 120px",
+                }}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="CONFIRM PASSWORD"
+                ref={confirmPasswordHandler}
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+
+                  width: "40rem",
+                  margin: "10px 0px 10px 120px",
+                }}
+              ></input>
+            </div>
+            <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
+              {" "}
+              <Button variant="primary" onClick={submitDataHandler}>
+                SIGNUP
+              </Button>
+              <b style={{ margin: "10px" }}>
+                {" "}
+                <Link to="/auth">Already have an Account! Login</Link>
+              </b>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

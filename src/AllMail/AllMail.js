@@ -93,7 +93,7 @@ const AllMail = () => {
           </p>
         </div>
       </Link>{" "}
-      {/* <DeleteEmail id={currentitem.id}></DeleteEmail> */}
+     
       <hr></hr>
     </div>
   ));

@@ -20,28 +20,63 @@ function App() {
   const loginState = useSelector((state) => state.logIn.loggedIn);
   console.log(loginState);
   const dispatch = useDispatch();
-const loggedIn = localStorage.getItem("user");
+  const loggedIn = localStorage.getItem("user");
   useEffect(() => {
-    
     if (loggedIn) {
       dispatch(LoggedInSliceActions.userLogIn());
     }
   }, []);
   return (
     <Fragment>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar style={{ backgroundColor: "pink" }}>
         <Container>
           <div>
-            <Navbar.Brand href="/inbox"><b>In-Mail</b></Navbar.Brand>
+            <Navbar.Brand href="/inbox">
+              <b>In-Mail</b>
+            </Navbar.Brand>
           </div>
           <div>
             <Nav className="me-auto">
-              <div style={{backgroundColor:"white",fontStyle:"oblique",}}><b>{loggedIn}</b></div>
-              <div style={{marginLeft:"10px"}}><Nav.Link href="/contact"><b>Contact us</b> </Nav.Link></div>
-              
-              <div style={{marginLeft:"10px"}}><Nav.Link href="/features"><b>Project Features</b></Nav.Link></div> 
-              {loginState ? <div style={{marginLeft:"10px"}}> <Nav.Link href="/profile"><b>Profile</b></Nav.Link></div> : ""}
-              {loginState ? <div style={{marginLeft:"10px"}}> <LogOut></LogOut></div> : ""}
+              <div style={{ backgroundColor: "white", fontStyle: "oblique" }}>
+                <b>{loggedIn}</b>
+              </div>
+              <div style={{ marginLeft: "10px" }}>
+                <Nav.Link href="/contact">
+                  <b>Contact us</b>{" "}
+                </Nav.Link>
+              </div>
+              <div style={{ marginLeft: "10px" }}>
+                <Nav.Link href="/features">
+                  <b>Project Features</b>
+                </Nav.Link>
+              </div>{" "}
+              {loggedIn ? (
+                ""
+              ) : (
+                <div style={{ marginLeft: "10px" }}>
+                  <Nav.Link href="/">
+                    <b>SIGN IN/SIGN UP</b>{" "}
+                  </Nav.Link>
+                </div>
+              )}
+              {loginState ? (
+                <div style={{ marginLeft: "10px" }}>
+                  {" "}
+                  <Nav.Link href="/profile">
+                    <b>Profile</b>
+                  </Nav.Link>
+                </div>
+              ) : (
+                ""
+              )}
+              {loginState ? (
+                <div style={{ marginLeft: "10px" }}>
+                  {" "}
+                  <LogOut></LogOut>
+                </div>
+              ) : (
+                ""
+              )}
             </Nav>
           </div>
         </Container>
@@ -54,20 +89,17 @@ const loggedIn = localStorage.getItem("user");
             width: "20rem",
             backgroundColor: "lightblue",
             marginRight: "50px",
-            marginLeft:"10px"
+            marginLeft: "10px",
           }}
         >
           {loginState ? <NavigationBar></NavigationBar> : ""}
         </div>
-
-
-        
         <div
           style={{
             display: "inline-flex",
             width: "70rem",
             backgroundColor: "honeydew",
-            marginTop:"10px"
+            marginTop: "10px",
           }}
         >
           <Switch>
@@ -103,19 +135,21 @@ const loggedIn = localStorage.getItem("user");
               <ProjectFeature></ProjectFeature>
             </Route>
             <Route path="/contact">
-             <Contact></Contact>
+              <Contact></Contact>
             </Route>
 
             <Route path="/signup">
-              {!loginState?<Signup></Signup>:"/inbox"}
+              {!loginState ? <Signup></Signup> : "/inbox"}
             </Route>
             <Route path="/">
-             {!loginState?<Login></Login>:<Redirect to="/inbox"></Redirect>} 
-             
+              {!loginState ? (
+                <Login></Login>
+              ) : (
+                <Redirect to="/inbox"></Redirect>
+              )}
             </Route>
           </Switch>
         </div>
-       
       </div>
     </Fragment>
   );

@@ -50,49 +50,68 @@ const Login = () => {
   }
   return (
     <div>
-      <h3>LOGIN PAGE</h3>
+      <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
+        <b
+          style={{
+            backgroundColor: "yellow",
+            boxShadow: "10px 7px 10px black",
+            borderRadius:"10px"
+          }}
+        >
+          LOGIN PAGE
+        </b>
+      </h3>
+      <div  style={{
+                backgroundColor:"yellowgreen",
+                color: "white",
 
-      <form>
-        {" "}
-        <div>
+                width: "55rem",
+                margin: "10px 30px 10px 120px",
+                boxShadow: "10px 7px 10px black",
+                borderRadius:"10px"
+              }}>
+        <form>
           {" "}
-          <input
-            style={{
-              backgroundColor: "black",
-              color: "white",
-
-              width: "40rem",
-              margin: "10px 0px 10px 120px",
-            }}
-            placeholder="email"
-            ref={emailHandler}
-          ></input>
-        </div>
-        <div>
-          {" "}
-          <input
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              width: "40rem",
-              margin: "10px 0px 10px 120px",
-            }}
-            placeholder="passsword"
-            ref={passwordHandler}
-          ></input>
-        </div>
-        <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
-          <Button variant="primary" onClick={LoginDataHandler}>
-            LOGIN
-          </Button>
-          <b style={{ margin: "10px" }}>
+          <div>
             {" "}
-            <Link to="/signup">
-              Don`t have a account! create a new one
-            </Link>{" "}
-          </b>
-        </div>
-      </form>
+            <input
+              style={{
+                backgroundColor: "black",
+                color: "white",
+
+                width: "40rem",
+                margin: "10px 0px 10px 120px",
+              }}
+              placeholder="email"
+              ref={emailHandler}
+            ></input>
+          </div>
+          <div>
+            {" "}
+            <input
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                width: "40rem",
+                margin: "10px 0px 10px 120px",
+              }}
+              placeholder="passsword"
+              ref={passwordHandler}
+            ></input>
+          </div>
+          <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
+            <Button variant="primary" onClick={LoginDataHandler}>
+              LOGIN
+            </Button>
+            <b style={{ margin: "10px" }}>
+              {" "}
+              <Link to="/signup">
+                Don`t have an account! create a new one
+              </Link>{" "}
+            </b>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
