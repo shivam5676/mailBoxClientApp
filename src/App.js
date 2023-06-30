@@ -1,19 +1,19 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import "./App.css";
-import Signup from "./components/signup/signup.js";
-import Login from "./components/login/Login";
+import Signup from "./signup/signup.js";
+import Login from "./login/Login";
 
-import NavigationBar from "./components/navigationBar/navigationBar";
-import ComposeMail from "./components/login/sendMail/ComposeMail";
-import SentMailListPrint from "./components/login/sendMail/SentMailListPrint";
-import ReadMessage from "./components/readMessage/ReadMessage";
+import NavigationBar from "./navigationBar/navigationBar";
+import ComposeMail from "./sendMail/ComposeMail";
+import SentMailListPrint from "./sendMail/SentMailListPrint";
+import ReadMessage from "./readMessage/ReadMessage";
 import AllMail from "./AllMail/AllMail";
 import { useDispatch, useSelector } from "react-redux";
 import { LoggedInSliceActions } from "./store/mailRedux";
 import { Fragment, useEffect } from "react";
-import LogOut from "./components/logOut/LogOut";
-import ProjectFeature from "./components/project feature/ProjectFeature";
+import LogOut from "./logOut/LogOut";
+import ProjectFeature from "./project feature/ProjectFeature";
 import Contact from "./Contact";
 
 function App() {
@@ -59,6 +59,9 @@ const loggedIn = localStorage.getItem("user");
         >
           {loginState ? <NavigationBar></NavigationBar> : ""}
         </div>
+
+
+        
         <div
           style={{
             display: "inline-flex",
@@ -104,10 +107,11 @@ const loggedIn = localStorage.getItem("user");
             </Route>
 
             <Route path="/signup">
-              <Signup></Signup>
+              {!loginState?<Signup></Signup>:"/inbox"}
             </Route>
             <Route path="/">
              {!loginState?<Login></Login>:<Redirect to="/inbox"></Redirect>} 
+             
             </Route>
           </Switch>
         </div>

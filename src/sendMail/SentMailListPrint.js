@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sentMailSliceActions } from "../../../store/mailRedux";
+
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Button, Nav } from "react-bootstrap";
 import DeleteEmail from "./deleteEmail";
+import { sentMailSliceActions } from "../store/mailRedux";
 
 const SentMailListPrint = () => {
-
- const sentList = useSelector((state) => state.sent.sentmail);
-
+  const sentList = useSelector((state) => state.sent.sentmail);
 
   const senderEmail = localStorage
     .getItem("user")
@@ -38,7 +37,7 @@ const SentMailListPrint = () => {
         }
       });
   }, []);
- 
+
   const newArray = sentList.map((currentitem) => (
     <div key={currentitem.id}>
       <Link to={`/inbox/sender/${senderEmail}/${currentitem.id}`}>
@@ -54,10 +53,12 @@ const SentMailListPrint = () => {
           <h4 style={{ display: "inline-flex", width: "600px" }}>
             {currentitem.subject}
           </h4>
-          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>{currentitem.reciever}</p>
+          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
+            {currentitem.reciever}
+          </p>
         </div>
       </Link>{" "}
-    <DeleteEmail id={currentitem.id}></DeleteEmail>
+      <DeleteEmail id={currentitem.id}></DeleteEmail>
       <hr></hr>
     </div>
   ));

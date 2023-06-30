@@ -2,14 +2,13 @@ import { useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { LoggedInSliceActions } from "../../store/mailRedux";
+import { LoggedInSliceActions } from "../store/mailRedux";
 const Login = () => {
   const [loginIsSuccessful, setLoginIsSuccessful] = useState(
     localStorage.getItem("key")
   );
-  const loginState = useSelector((state) => {
-    state.logIn.loggedIn;
-  });
+  const loginState = useSelector((state) => state.logIn.loggedIn);
+
   const dispatch = useDispatch();
   console.log(loginIsSuccessful);
   const emailHandler = useRef();
@@ -38,8 +37,9 @@ const Login = () => {
       })
       .then((response) => {
         localStorage.setItem("user", response.email);
-        setLoginIsSuccessful(true);
+
         dispatch(LoggedInSliceActions.userLogIn());
+        setLoginIsSuccessful(true);
       })
       .catch((err) => {
         alert("login Failed......check network connection and login details");

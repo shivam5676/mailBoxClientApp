@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { readMailSliceActions } from "../../store/mailRedux";
+import { readMailSliceActions } from "../store/mailRedux";
 import { useEffect } from "react";
 
 const ReadMessage = () => {

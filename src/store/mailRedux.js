@@ -40,6 +40,10 @@ const allMailSlice = createSlice({
     },
     unreadMail(state,action){
       state.unread=action.payload;
+    },
+    logOutHandler(state,action){
+      state.allmail=[];
+      state.unread=0
     }
   },
 });

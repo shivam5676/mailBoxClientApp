@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import React, { useState, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { useDispatch, useSelector } from "react-redux";
-import { sentMailSliceActions } from "../../../store/mailRedux";
+
 const ComposeMail = () => {
   const dispatch = useDispatch();
   const editor = useRef(null);

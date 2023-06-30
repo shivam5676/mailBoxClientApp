@@ -1,13 +1,16 @@
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { LoggedInSliceActions } from "../../store/mailRedux";
+
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { LoggedInSliceActions, allMailSliceActions } from "../store/mailRedux";
 
 const LogOut = () => {
   const dispatch = useDispatch();
   const logoutHandler = () => {
     localStorage.removeItem("user");
     dispatch(LoggedInSliceActions.userLogOut());
+    dispatch(allMailSliceActions.logOutHandler());
+  
   };
 
   return (

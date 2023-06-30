@@ -10,10 +10,10 @@ const AllMail = () => {
   }
 
   const dispatch = useDispatch();
-  //   console.log(senderEmail);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      // Code to be executed every 2 seconds
+      // Code will be executed on every 2 seconds
       fetch(
         `https://mailboxclient-e8125-default-rtdb.firebaseio.com/reciever/${RecieverEmail}.json`,
         {
@@ -45,32 +45,57 @@ const AllMail = () => {
   }, []);
   const recieveList = useSelector((state) => state.all.allmail);
   const newArray = recieveList.map((currentitem) => (
-    <Link
-      to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}
-      key={currentitem.id}
-    >
-      {" "}
-      <div style={{ marginLeft: "40px" }}>
-        {currentitem.read ? (
-          ""
-        ) : (
-          <b style={{ color: "blue", fontSize: "50px" }}>.</b>
-        )}
-        <p
-          style={{
-            display: "inline-flex",
-            margin: "0px 100px 0px 70px",
-            width: "20rem",
-          }}
-        >
-          {currentitem.recieverName}
-        </p>
-        <h4 style={{ display: "inline-flex", width: "50 rem" }}>
-          {currentitem.subject}
-        </h4>
-        <hr></hr>
-      </div>
-    </Link>
+    // <Link
+    //   to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}
+    //   key={currentitem.id}
+    // >
+    //   {" "}
+    //   <div style={{ marginLeft: "40px" }}>
+    //     {currentitem.read ? (
+    //       ""
+    //     ) : (
+    //       <b style={{ color: "blue", fontSize: "35px" }}>.</b>
+    //     )}
+    //     <p
+    //       style={{
+    //         display: "inline-flex",
+    //         margin: "0px 100px 0px 70px",
+    //         // width: "20rem",
+    //       }}
+    //     >
+    //       {currentitem.recieverName}
+    //     </p>
+    //     <h4 style={{ display: "inline-flex", width: "600 px" }}>
+    //       {currentitem.subject}
+    //     </h4>
+    //     <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
+    //       ({currentitem.sender})
+    //     </p>
+    //   </div>
+    //   <hr></hr>
+    // </Link>
+    <div key={currentitem.id}>
+      <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}>
+        <div key={currentitem.id} style={{ marginLeft: "40px" }}>
+          {currentitem.read ? (
+            ""
+          ) : (
+            <b style={{ color: "blue", fontSize: "35px" }}>.</b>
+          )}
+          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
+            <b>{currentitem.senderName}</b>
+          </p>
+          <h4 style={{ display: "inline-flex", width: "600px" }}>
+            {currentitem.subject}
+          </h4>
+          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
+            {currentitem.sender}
+          </p>
+        </div>
+      </Link>{" "}
+      {/* <DeleteEmail id={currentitem.id}></DeleteEmail> */}
+      <hr></hr>
+    </div>
   ));
 
   return <div>{newArray}</div>;
