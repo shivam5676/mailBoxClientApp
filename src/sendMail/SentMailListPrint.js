@@ -8,7 +8,7 @@ import { sentMailSliceActions } from "../store/mailRedux";
 
 const SentMailListPrint = () => {
   const sentList = useSelector((state) => state.sent.sentmail);
-
+const recieverName=localStorage.getItem("username")
   const senderEmail = localStorage
     .getItem("user")
     .replace("@", "")
@@ -37,22 +37,34 @@ const SentMailListPrint = () => {
         }
       });
   }, []);
+ 
 
-  const newArray = sentList.map((currentitem) => (
+  let newArray = sentList.map((currentitem) => (
     <div key={currentitem.id}>
       <Link to={`/inbox/sender/${senderEmail}/${currentitem.id}`}>
-        <div key={currentitem.id} style={{ marginLeft: "40px" }}>
-          {currentitem.read ? (
-            ""
-          ) : (
-            <b style={{ color: "blue", fontSize: "35px" }}>.</b>
-          )}
-          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
-            {currentitem.recieverName}
-          </p>
-          <h4 style={{ display: "inline-flex", width: "600px" }}>
-            {currentitem.subject}
-          </h4>
+        <div
+          style={{
+            display: "inline-flex",
+            boxShadow: "0px 0px 12px 5px",
+            width: "65rem",
+          }}
+        >
+          <div style={{ width: "3rem" }}>
+            {currentitem.read ? (
+              ""
+            ) : (
+              <b style={{ color: "blue", fontSize: "35px" }}>.</b>
+            )}
+          </div>{" "}
+          <div style={{ width: "12rem" }}>
+            <p>
+              <b>{currentitem.senderName}</b>
+            </p>
+          </div>
+          <div style={{ width: "35rem" }}>
+            {" "}
+            <h4>{currentitem.subject}</h4>
+          </div>
           <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
             {currentitem.reciever}
           </p>
@@ -62,7 +74,13 @@ const SentMailListPrint = () => {
       <hr></hr>
     </div>
   ));
+  
+  if(sentList.length=="0")
+  {
+    newArray=<h3>no sent email present ,compose a new mail</h3>
+  }
+ 
 
-  return <div>{newArray}</div>;
+  return <div style={{boxShadow:"0px 0px 9px 2px  black"}}>{newArray}</div>;
 };
 export default SentMailListPrint;

@@ -4,21 +4,31 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const NavigationBar = () => {
   const unreadmsg = useSelector((state) => state.all.unread);
+
   return (
     <div>
       <Link to="/compose">
-        <Button>COMPOSE</Button>
+        <Button style={{ boxShadow: "0px 0px 15px 2px black" }}>COMPOSE</Button>
       </Link>
 
       <Nav defaultActiveKey="/inbox" className="flex-column">
         <div style={{ display: "inline-flex" }}>
-          <Nav.Link href="/inbox" style={{ color: "white" }}><b> Inbox</b>
-           
+          <Nav.Link href="/inbox">
+            <b> Inbox</b>
           </Nav.Link>
-          <div style={{ display: "inline-flex",backgroundColor:"yellow" }}>unread:{unreadmsg}</div>
+          <div
+            style={{
+              display: "inline-flex",
+              backgroundColor: "yellow",
+              boxShadow: "0px 0px 15px 2px black",
+              margin:"5px"
+            }}
+          >
+            unread:{unreadmsg}
+          </div>
         </div>
 
-        <Nav.Link href="/sent" style={{ color: "white" }}>
+        <Nav.Link href="/sent">
           <b>sent email</b>
         </Nav.Link>
       </Nav>

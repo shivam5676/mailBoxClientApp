@@ -1,5 +1,4 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import "./App.css";
 import Signup from "./signup/signup.js";
 import Login from "./login/Login";
@@ -12,9 +11,11 @@ import AllMail from "./AllMail/AllMail";
 import { useDispatch, useSelector } from "react-redux";
 import { LoggedInSliceActions } from "./store/mailRedux";
 import { Fragment, useEffect } from "react";
-import LogOut from "./logOut/LogOut";
 import ProjectFeature from "./project feature/ProjectFeature";
-import Contact from "./Contact";
+import Contact from "./Contact/Contact";
+import Profile from "./profile/Profile";
+import NavigationHome from "./navigationbar(home)/NavigationHome";
+import ProfileDetails from "./profile/ProfileDetails";
 
 function App() {
   const loginState = useSelector((state) => state.logIn.loggedIn);
@@ -28,59 +29,7 @@ function App() {
   }, []);
   return (
     <Fragment>
-      <Navbar style={{ backgroundColor: "pink" }}>
-        <Container>
-          <div>
-            <Navbar.Brand href="/inbox">
-              <b>In-Mail</b>
-            </Navbar.Brand>
-          </div>
-          <div>
-            <Nav className="me-auto">
-              <div style={{ backgroundColor: "white", fontStyle: "oblique" }}>
-                <b>{loggedIn}</b>
-              </div>
-              <div style={{ marginLeft: "10px" }}>
-                <Nav.Link href="/contact">
-                  <b>Contact us</b>{" "}
-                </Nav.Link>
-              </div>
-              <div style={{ marginLeft: "10px" }}>
-                <Nav.Link href="/features">
-                  <b>Project Features</b>
-                </Nav.Link>
-              </div>{" "}
-              {loggedIn ? (
-                ""
-              ) : (
-                <div style={{ marginLeft: "10px" }}>
-                  <Nav.Link href="/">
-                    <b>SIGN IN/SIGN UP</b>{" "}
-                  </Nav.Link>
-                </div>
-              )}
-              {loginState ? (
-                <div style={{ marginLeft: "10px" }}>
-                  {" "}
-                  <Nav.Link href="/profile">
-                    <b>Profile</b>
-                  </Nav.Link>
-                </div>
-              ) : (
-                ""
-              )}
-              {loginState ? (
-                <div style={{ marginLeft: "10px" }}>
-                  {" "}
-                  <LogOut></LogOut>
-                </div>
-              ) : (
-                ""
-              )}
-            </Nav>
-          </div>
-        </Container>
-      </Navbar>
+      <NavigationHome></NavigationHome>
       <div>
         {" "}
         <div
@@ -90,6 +39,7 @@ function App() {
             backgroundColor: "lightblue",
             marginRight: "50px",
             marginLeft: "10px",
+            boxShadow: "10px 3px 12px black",
           }}
         >
           {loginState ? <NavigationBar></NavigationBar> : ""}
@@ -98,8 +48,7 @@ function App() {
           style={{
             display: "inline-flex",
             width: "70rem",
-            backgroundColor: "honeydew",
-            marginTop: "10px",
+            marginTop: "15px",
           }}
         >
           <Switch>
@@ -131,12 +80,27 @@ function App() {
             ) : (
               ""
             )}
+            {loginState ? (
+              <Route path="/profileDetails" >
+                <ProfileDetails></ProfileDetails>
+              </Route>
+            ) : (
+              ""
+            )} 
+            {loginState ? (
+              <Route path="/profile"exact>
+                <Profile></Profile>
+              </Route>
+            ) : (
+              ""
+            )}
             <Route path="/features">
               <ProjectFeature></ProjectFeature>
             </Route>
             <Route path="/contact">
               <Contact></Contact>
             </Route>
+           
 
             <Route path="/signup">
               {!loginState ? <Signup></Signup> : "/inbox"}

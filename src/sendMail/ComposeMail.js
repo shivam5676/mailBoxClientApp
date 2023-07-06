@@ -17,14 +17,14 @@ const ComposeMail = () => {
       return;
     }
     const senderEmail = localStorage.getItem("user");
-    const senderName = "Shivam singh";
-    const recieverName = "Dummy person";
+    const senderName = localStorage.getItem("username");
+    // const recieverName = localStorage.getItem("username");
     const recieverEmail = recieverEmailRef.current.value;
     const subject = subjectRef.current.value;
     const emailData = editor.current.value;
     const myobj = {
       senderName: senderName,
-      recieverName: recieverName,
+      // recieverName: recieverName,
       sender: senderEmail,
       reciever: recieverEmail,
       subject: subject,
@@ -102,18 +102,18 @@ const ComposeMail = () => {
   // console.log(sentList);
 
   return (
-    <div style={{ width: "80rem", height: "0rem" }}>
+    <div style={{ width: "80rem",boxShadow:"0px 0px 12px 5px red",marginTop:"30px" }}>
       <form>
         <input
           placeholder="to"
-          style={{ width: "80rem", marginBottom: "10px" }}
+          style={{ width: "80rem", marginBottom: "20px",boxShadow:"0px 0px 12px 5px black" }}
           ref={recieverEmailRef}
           required
         ></input>
 
         <input
           placeholder="subject"
-          style={{ width: "80rem", marginBottom: "10px" }}
+          style={{ width: "80rem", marginBottom: "20px",boxShadow:"0px 0px 12px 5px black"}}
           ref={subjectRef}
           required
         ></input>
@@ -122,6 +122,7 @@ const ComposeMail = () => {
           ref={editor}
           value={content}
           onChange={(newContent) => setContent(newContent)}
+          
         />
         <div style={{ marginTop: "10px" }}> 
           {" "}

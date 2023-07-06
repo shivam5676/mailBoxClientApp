@@ -41,7 +41,7 @@ const ReadMessage = () => {
   }, []);
   console.log(readState);
   const senderName = readState.senderName;
-  const recieverName = readState.recieverName;
+  const recieverName = localStorage.getItem("username")
   const senderEmail = readState.sender;
   const recieverEmail=readState.reciever
   const message=readState.message

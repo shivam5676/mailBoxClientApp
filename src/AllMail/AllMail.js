@@ -44,59 +44,43 @@ const AllMail = () => {
     return () => clearInterval(interval);
   }, []);
   const recieveList = useSelector((state) => state.all.allmail);
-  const newArray = recieveList.map((currentitem) => (
-    // <Link
-    //   to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}
-    //   key={currentitem.id}
-    // >
-    //   {" "}
-    //   <div style={{ marginLeft: "40px" }}>
-    //     {currentitem.read ? (
-    //       ""
-    //     ) : (
-    //       <b style={{ color: "blue", fontSize: "35px" }}>.</b>
-    //     )}
-    //     <p
-    //       style={{
-    //         display: "inline-flex",
-    //         margin: "0px 100px 0px 70px",
-    //         // width: "20rem",
-    //       }}
-    //     >
-    //       {currentitem.recieverName}
-    //     </p>
-    //     <h4 style={{ display: "inline-flex", width: "600 px" }}>
-    //       {currentitem.subject}
-    //     </h4>
-    //     <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
-    //       ({currentitem.sender})
-    //     </p>
-    //   </div>
-    //   <hr></hr>
-    // </Link>
+  let newArray = recieveList.map((currentitem) => (
     <div key={currentitem.id}>
       <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}>
-        <div key={currentitem.id} style={{ marginLeft: "40px" }}>
-          {currentitem.read ? (
-            ""
-          ) : (
-            <b style={{ color: "blue", fontSize: "35px" }}>.</b>
-          )}
-          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
-            <b>{currentitem.senderName}</b>
-          </p>
-          <h4 style={{ display: "inline-flex", width: "600px" }}>
-            {currentitem.subject}
-          </h4>
+        <div
+          style={{
+            display: "inline-flex",
+            boxShadow: "0px 0px 12px 5px",
+            width: "65rem",
+          }}
+        >
+          <div style={{ width: "3rem" }}>
+            {currentitem.read ? (
+              ""
+            ) : (
+              <b style={{ color: "blue", fontSize: "35px" }}>.</b>
+            )}
+          </div>{" "}
+          <div style={{ width: "12rem" }}>
+            <p>
+              <b>{currentitem.senderName}</b>
+            </p>
+          </div>
+          <div style={{ width: "35rem" }}>
+            {" "}
+            <h4>{currentitem.subject}</h4>
+          </div>
           <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
             {currentitem.sender}
           </p>
         </div>
-      </Link>{" "}
-     
+      </Link>
       <hr></hr>
     </div>
   ));
+  if (recieveList.length == "0") {
+    newArray = <h3>inbox is empty</h3>;
+  }
 
   return <div>{newArray}</div>;
 };

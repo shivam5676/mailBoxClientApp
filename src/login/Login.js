@@ -37,6 +37,7 @@ const Login = () => {
       })
       .then((response) => {
         localStorage.setItem("user", response.email);
+        localStorage.setItem("token", response.idToken);
 
         dispatch(LoggedInSliceActions.userLogIn());
         setLoginIsSuccessful(true);
@@ -49,7 +50,7 @@ const Login = () => {
     return <Redirect to="/inbox"></Redirect>;
   }
   return (
-    <div>
+    <div style={{height:"300px"}}>
       <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
         <b
           style={{
@@ -66,7 +67,8 @@ const Login = () => {
                 color: "white",
 
                 width: "55rem",
-                margin: "10px 30px 10px 120px",
+                height:"170px",
+                margin: "20px 30px 10px 120px",
                 boxShadow: "10px 7px 10px black",
                 borderRadius:"10px"
               }}>
@@ -84,6 +86,7 @@ const Login = () => {
               }}
               placeholder="email"
               ref={emailHandler}
+              type="email"
             ></input>
           </div>
           <div>
@@ -97,6 +100,7 @@ const Login = () => {
               }}
               placeholder="passsword"
               ref={passwordHandler}
+              type="password"
             ></input>
           </div>
           <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
