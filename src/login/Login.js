@@ -20,6 +20,35 @@ const Login = () => {
       password: passwordHandler.current.value,
       returnSecureToken: true,
     };
+    // fetch(
+    //   "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       idToken: localStorage.getItem("token"),
+    //       returnSecureToken: true,
+    //     }),
+    //     headers: { "Content-Type": "application/json" },
+    //   }
+    // )
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.json();
+    //     } else {
+    //       throw new Error(
+    //         "data not updated yet.check interner connection or try again later"
+    //       );
+    //     }
+    //   })
+    //   .then((response) => {
+    //     localStorage.setItem("username", response.users[0].displayName);
+    //     localStorage.setItem("user",response.users[0].email)
+    //     // setuserName(localStorage.getItem("username"))
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
       {
@@ -40,6 +69,32 @@ const Login = () => {
         localStorage.setItem("token", response.idToken);
 
         dispatch(LoggedInSliceActions.userLogIn());
+        fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              idToken: localStorage.getItem("token"),
+              returnSecureToken: true,
+            }),
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error(
+                "data not updated yet.check interner connection or try again later"
+              );
+            }
+          })
+          .then((response) => {
+            localStorage.setItem("username", response.users[0].displayName);
+            localStorage.setItem("user", response.users[0].email);
+            
+          });
+
         setLoginIsSuccessful(true);
       })
       .catch((err) => {
@@ -50,28 +105,30 @@ const Login = () => {
     return <Redirect to="/inbox"></Redirect>;
   }
   return (
-    <div style={{height:"300px"}}>
+    <div style={{ height: "300px" }}>
       <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
         <b
           style={{
             backgroundColor: "yellow",
             boxShadow: "10px 7px 10px black",
-            borderRadius:"10px"
+            borderRadius: "10px",
           }}
         >
           LOGIN PAGE
         </b>
       </h3>
-      <div  style={{
-                backgroundColor:"yellowgreen",
-                color: "white",
+      <div
+        style={{
+          backgroundColor: "yellowgreen",
+          color: "white",
 
-                width: "55rem",
-                height:"170px",
-                margin: "20px 30px 10px 120px",
-                boxShadow: "10px 7px 10px black",
-                borderRadius:"10px"
-              }}>
+          width: "55rem",
+          height: "170px",
+          margin: "20px 30px 10px 120px",
+          boxShadow: "10px 7px 10px black",
+          borderRadius: "10px",
+        }}
+      >
         <form>
           {" "}
           <div>

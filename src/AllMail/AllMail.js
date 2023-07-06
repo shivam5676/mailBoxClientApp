@@ -4,6 +4,36 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AllMail = () => {
+  useEffect(()=>{
+    fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          idToken: localStorage.getItem("token"),
+          returnSecureToken: true,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error(
+            "data not updated yet.check interner connection or try again later"
+          );
+        }
+      })
+      .then((response) => {
+        localStorage.setItem("username", response.users[0].displayName);
+        localStorage.setItem("user",response.users[0].email)
+        // setuserName(localStorage.getItem("username"))
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[])
   let RecieverEmail = localStorage.getItem("user");
   if (RecieverEmail) {
     RecieverEmail = RecieverEmail.replace("@", "").replace(".", "");

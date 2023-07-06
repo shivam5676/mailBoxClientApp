@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
@@ -9,11 +9,13 @@ const ProfileDetails = () => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.logIn.loggedIn);
   const nameHandler = useRef();
+   
   const UserDataSaver = (event) => {
+   
     event.preventDefault();
     const nameValue = nameHandler.current.value;
-    console.log(nameValue),
-      // AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM
+    
+
       fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
         {
@@ -31,26 +33,26 @@ const ProfileDetails = () => {
             return res.json();
           } else {
             throw new Error(
-              "data not updated yet.check interner connection or try again later"
+              "data not updated yet.check internet connection or try again later"
             );
           }
         })
         .then((response) => {
-          console.log("data successful");
-          console.log(response);
+         localStorage.setItem("username",nameValue)
           setRedirect(true);
           dispatch(LoggedInSliceActions.userLogIn());
+          
         })
         .catch((err) => {
-          console.log(err);
+          alert(err)
         });
   };
   if (redirect) {
-    return <Redirect to="/inbox"></Redirect>;
+    return <Redirect to="/profile"></Redirect>;
   }
 
   return (
-    <div style={{ height: "300px" }}>
+    <div>
       <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
         <b
           style={{
@@ -59,7 +61,7 @@ const ProfileDetails = () => {
             borderRadius: "10px",
           }}
         >
-          USER DETAILS REGISTRATION
+          USER UPDATE DETAILS PANEL
         </b>
       </h3>
       <div
@@ -77,6 +79,7 @@ const ProfileDetails = () => {
         <form>
           {" "}
           <div>
+            <p><h2>Name Update</h2></p>
             {" "}
             <input
               style={{
@@ -92,7 +95,7 @@ const ProfileDetails = () => {
           </div>
           <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
             <Button variant="primary" onClick={UserDataSaver}>
-              UPDATE DETAILS
+              UPDATE NAME
             </Button>
           </div>
         </form>

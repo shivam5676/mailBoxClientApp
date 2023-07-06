@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { readMailSliceActions } from "../store/mailRedux";
 import { useEffect } from "react";
+import htmlToFormattedText from "html-to-formatted-text";
 
 const ReadMessage = () => {
   const dispatch = useDispatch();
@@ -41,22 +42,29 @@ const ReadMessage = () => {
   }, []);
   console.log(readState);
   const senderName = readState.senderName;
-  const recieverName = localStorage.getItem("username")
+  const recieverName = localStorage.getItem("username");
   const senderEmail = readState.sender;
-  const recieverEmail=readState.reciever
-  const message=readState.message
+  const recieverEmail = readState.reciever;
+  const message = readState.message;
   return (
-    <div>
+    <div style={{ boxShadow: "10px 3px 12px black", width: "70rem" }}>
+      {" "}
       <div>
         {" "}
-        <h4 style={{ display: "inline-flex" }}>from:{senderName}</h4>
+        <h5 style={{ display: "inline-flex" }}>To :{`  ${recieverName}`}</h5>
+        <h5 style={{ display: "inline-flex" }}>{`<${recieverEmail}>`}</h5>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        {" "}
+        <h4 style={{ display: "inline-flex" }}>From : {senderName}</h4>
         <p style={{ display: "inline-flex" }}>{`<${senderEmail}>`}</p>
       </div>
-
-      <h5 style={{ display: "inline-flex" }}>to:{recieverName}</h5>
-      <h5 style={{ display: "inline-flex" }}>{`<${recieverEmail}>`}</h5>
       <hr></hr>
-      {message}
+      
+      <div style={{marginLeft:"50px"}}>
+        {htmlToFormattedText(message)}
+        </div>
+      
     </div>
   );
 };

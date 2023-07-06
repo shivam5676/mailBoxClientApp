@@ -1,37 +1,42 @@
+import { useEffect, useState } from "react";
 import { Button, NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Profile = () => {
-  fetch(
-    "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        idToken: localStorage.getItem("token"),
-        returnSecureToken: true,
-      }),
-      headers: { "Content-Type": "application/json" },
-    }
-  )
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error(
-          "data not updated yet.check interner connection or try again later"
-        );
-      }
-    })
-    .then((response) => {
-      localStorage.setItem("username", response.users[0].displayName);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  let username = "not provided yet";
-  if (localStorage.getItem("username")) {
-    username = localStorage.getItem("username");
-  }
+  const [username, setuserName] = useState("not provided yet");
+  const getUser = localStorage.getItem("username");
+
+
+    useEffect(()=>{
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: localStorage.getItem("token"),
+            returnSecureToken: true,
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              "data not updated yet.check interner connection or try again later"
+            );
+          }
+        })
+        .then((response) => {
+          localStorage.setItem("username", response.users[0].displayName);
+          localStorage.setItem("user",response.users[0].email)
+          setuserName(localStorage.getItem("username"))
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [])
 
   return (
     <div style={{ width: "70rem", boxShadow: "10px 3px 12px black" }}>
@@ -133,8 +138,11 @@ const Profile = () => {
               boxShadow: "10px 3px 12px black",
             }}
           >
-            <NavLink href="/profileDetails"> <b>Update Name</b></NavLink>
-            
+            <NavLink href="/profileDetails">
+              {" "}
+              <b>Update Name</b>
+            </NavLink>
+
             <hr></hr>
             <b>Change Email</b>
             <hr></hr>

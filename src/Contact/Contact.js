@@ -33,7 +33,7 @@ alert("your message has been successfully recieved by us.....thank u")
   }
 
   return (
-    <div style={{ width: "80rem", height: "420px",marginTop:"10px",boxShadow:"0px 0px 5px 4px",backgroundColor:"yellow" }}>
+    <div style={{ width: "80rem", height: "420px",marginTop:"10px",boxShadow:"0px 0px 5px 4px",backgroundColor:"" }}>
       <h3 style={{ textAlign: "center" }}>
         {" "}
         <b style={{ color: "goldenrod", textShadow: "initial" }}>
