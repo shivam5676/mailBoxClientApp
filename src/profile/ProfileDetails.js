@@ -12,7 +12,7 @@ const ProfileDetails = () => {
   const UserDataSaver = (event) => {
     event.preventDefault();
     const nameValue = nameHandler.current.value;
-    console.log(nameValue),
+    console.log(nameValue);
       // AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM
       fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
