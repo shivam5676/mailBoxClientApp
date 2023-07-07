@@ -1,46 +1,239 @@
+import { current } from "@reduxjs/toolkit";
+import { useState } from "react";
+
+// import Sentimages from "../image/Sentimage.png"
 const ProjectFeature = () => {
-  return (
-    <div style={{ boxShadow: "0px 0px 4px 7px black",marginTop:"10px"}}>
-      <h1 style={{ textAlign: "center" }}>project features</h1>
+  const [currentContent, setCurrentContent] = useState(0);
+  const contentHandlerPLUS = () => {
+    setCurrentContent(currentContent + 1);
+  };
+  const contentHandlerMinus = () => {
+    setCurrentContent(currentContent - 1);
+  };
+  console.log(currentContent);
+  let features;
+  if (currentContent === 0) {
+  features=  <div style={{ boxShadow: "0px 0px 4px 7px black", marginTop: "10px",width:"75rem"}}>
+      <h1 style={{ textAlign: "center" }}>let`s start the adventure</h1>
       <hr></hr>
-      <h3
+      <div
         style={{
-          backgroundColor: "red",
+          backgroundColor: "yellow",
           boxShadow: "10px 3px 12px black",
           marginTop: "20px",
+          marginLeft: "10rem",
+          marginBottom: "10px",
+          borderRadius: "10px",
+          width: "50rem",
+          textAlign:"center"
         }}
       >
-        EACH SUCCESSFUL SENT EMAIL WILL BE STORED IN SENT MAIL
-      </h3>
-      <h3
-        style={{
+        <h2>DO YOU WANT TO EXPLORE  FEATURES !!</h2>
+       
+      </div> 
+      <div style={{ textAlign: "center"}}>
+            <button
+              onClick={contentHandlerPLUS}
+              style={{
+                backgroundColor: "aqua",
+                boxShadow: "0px 0px 10px 3px",
+                marginTop: "20px",
+                borderRadius: "12px",
+
+              }}
+            >
+              <b>let's start </b>
+            </button>
+          </div>
+
+      <p  style={{
           backgroundColor: "yellow",
           boxShadow: "10px 3px 12px black",
-          marginTop: "15px",
-        }}
-      >
-        RECIPIENT CAN VIEW THIS EMAIL IN THIER INBOX JUST BY LOGGING WITH SAME
-        EMAIL
-      </h3>
-      <h3
+          marginTop: "20px",
+          marginLeft: "10rem",
+          marginBottom: "10px",
+          borderRadius: "10px",
+          width: "50rem",
+        }}><b>USE NEXT AND PREVIOUS BUTTON FOR MOVING FORWARD AND BACKWARD</b></p>
+    </div>;
+  }
+
+  if (currentContent == 1) {
+    console.log("first executed");
+    features = (
+      <div style={{ boxShadow: "0px 0px 4px 7px black", marginTop: "10px" }}>
+        <h1 style={{ textAlign: "center" }}>Project Features</h1>
+        <hr></hr>
+        <div
+          style={{
+            backgroundColor: "red",
+            boxShadow: "10px 3px 12px black",
+            marginTop: "20px",
+            marginLeft: "10px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+            width: "50rem",
+          }}
+        >
+          <p style={{ marginLeft: "5px" }}>
+            <b>EACH SUCCESSFUL SENT EMAIL WILL BE STORED IN SENT MAIL</b>
+          </p>
+          <p style={{ marginLeft: "5px" }}>
+            <b>EACH UNREAD EMAIL WILL BE SHOWN A BLUE SHADOW WITH BLUE DOT</b>
+          </p>
+
+          <p style={{ marginLeft: "5px", marginBottom: "20px" }}>
+            <b>YOU CAN DELETE SENT MAIL BY CLICKING ON DELETE BUTTON</b>
+          </p>
+        </div>
+
+        <img src="image/image-1.png"></img>
+      </div>
+    );
+  }
+  if (currentContent == 2) {
+    console.log("second executed");
+    features = (
+      <div
         style={{
-          backgroundColor: "red",
-          boxShadow: "10px 3px 12px black",
-          marginTop: "15px",
+          boxShadow: "0px 0px 4px 7px black",
+          marginTop: "10px",
+          paddingRight: "120px",
         }}
       >
-        IF YOU FORGET TO READ AN EMAIL THEN A BLUE DOT WILL BE VISIBLE ON EACH
-        UNREAD EMAIL AND WILL BE INVISIBLE ONCE U READ THAT EMAIL
-      </h3>
-      <h3
+        <h1 style={{ textAlign: "center" }}>Project Features</h1>
+        <hr></hr>
+        <div
+          style={{
+            backgroundColor: "yellow",
+            boxShadow: "10px 3px 12px black",
+            marginTop: "20px",
+            marginLeft: "10px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+            width: "50rem",
+          }}
+        >
+          <p style={{ marginLeft: "5px" }}>
+            <b>EACH READ MAIL WILL BE SHOWN GREEN SHADOW </b>
+          </p>
+          <p style={{ marginLeft: "5px" }}>
+            <b>WHEN U CLICK ON MAIL AFTER THAT BLUE DOT WILL BE INVISIBLE</b>
+          </p>
+          <p style={{ marginLeft: "5px" }}>
+            <b></b>
+          </p>
+        </div>
+
+        <img src="image/image-2.png"></img>
+      </div>
+    );
+  }
+  if (currentContent == 3) {
+    features = (
+      <div
         style={{
-          backgroundColor: "yellow",
-          boxShadow: "10px 3px 12px black",
-          marginTop: "15px",
+          boxShadow: "0px 0px 4px 7px black",
+          marginTop: "10px",
+          paddingRight: "120px",
         }}
       >
-        IN PROFILE SECTION YOU CAN VIEW AND EDIT YOUR DETAILS{" "}
-      </h3>
+        <h1 style={{ textAlign: "center" }}>Project Features</h1>
+        <hr></hr>
+        <div
+          style={{
+            backgroundColor: "yellow",
+            boxShadow: "10px 3px 12px black",
+            marginTop: "20px",
+            marginLeft: "10px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+            width: "50rem",
+          }}
+        ></div>
+
+        <img src="image/image-3.png" style={{ width: "70rem" }}></img>
+      </div>
+    );
+  }
+  if (currentContent == 4) {
+    console.log("first executed");
+    features = (
+      <div style={{ boxShadow: "0px 0px 4px 7px black", marginTop: "10px" }}>
+        <h1 style={{ textAlign: "center" }}>Project Features</h1>
+        <hr></hr>
+        <div
+          style={{
+            backgroundColor: "yellow",
+            boxShadow: "10px 3px 12px black",
+            marginTop: "20px",
+            marginLeft: "10px",
+            marginBottom: "30px",
+
+            borderRadius: "10px",
+            width: "76rem",
+          }}
+        >
+          <h3 style={{ marginLeft: "5px" }}>
+            <b>These are some features ,On which this web App will work</b>
+          </h3>
+          <hr></hr>
+          <p style={{ marginLeft: "5px" }}>
+            <b>
+              IF ANY FEATURES ARE NOT WORKING OR YOU FIND ANY ERROR OR YOU HAVE
+              ANY FEEDBACK FOR ME,THEN GO TO CONTACT US PAGE AND SEND US A
+              MESSAGE{" "}
+            </b>
+          </p>
+          <hr></hr>
+        </div>
+        <img src="image/image-4.png" style={{ width: "60rem" }}></img>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {features}
+      <div style={{ display: "inline-flex" }}>
+        {" "}
+        {currentContent > 1 ? (
+          <div style={{ textAlign: "left", marginRight: "48rem" }}>
+            <button
+              onClick={contentHandlerMinus}
+              style={{
+                backgroundColor: "aqua",
+                boxShadow: "0px 0px 10px 3px",
+                marginTop: "20px",
+                borderRadius: "12px",
+              }}
+            >
+              <b>EXPLORE PREVIOUS FEATURES</b>
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+        {currentContent < 4&&currentContent>0 ? (
+          <div style={{ textAlign: "right" }}>
+            <button
+              onClick={contentHandlerPLUS}
+              style={{
+                backgroundColor: "aqua",
+                boxShadow: "0px 0px 10px 3px",
+                marginTop: "20px",
+                borderRadius: "12px",
+                textAlign: "right",
+                // marginLeft: "62rem",
+              }}
+            >
+              <b>EXPLORE NEXT FEATURES</b>
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

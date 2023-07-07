@@ -3,37 +3,47 @@ import { Container } from "react-bootstrap";
 
 const Contact = () => {
   const senderEmail = localStorage.getItem("user");
-  const nameRef=useRef()
-  const messageref=useRef()
-  const emailRef=useRef()
-  const sendMessageHandler=(event)=>{
-    event.preventDefault()
-    const myobj={
-      name:nameRef.current.value,
-      emailRef:emailRef.current.value,
-      message:messageref.current.value
-    }
+  const nameRef = useRef("");
+  const feedbackRef = useRef("");
+  const messageref = useRef("");
+  const emailRef = useRef("");
+  const sendMessageHandler = (event) => {
+    event.preventDefault();
+    const myobj = {
+      name: nameRef.current.value,
+      emailRef: emailRef.current.value,
+      message: messageref.current.value,
+      feedback: feedbackRef.current.value,
+    };
     fetch(
-      `https://mailboxclient-e8125-default-rtdb.firebaseio.com/message/${senderEmail
-        .replace("@", "")
-        .replace(".", "")}.json`,
+      `https://mailboxclient-e8125-default-rtdb.firebaseio.com/message/${
+        myobj.feedback
+      }/${senderEmail.replace("@", "").replace(".", "")}.json`,
       {
         method: "POST",
         body: JSON.stringify(myobj),
       }
     ).then((res) => {
-      if(res.ok){
-alert("your message has been successfully recieved by us.....thank u")
-        // return res.json()
-      }
-      else {
-        alert("Message sending Failed,check your internet or try again after some time");
+      if (res.ok) {
+        alert("your message has been successfully recieved by us.....thank u");
+      } else {
+        alert(
+          "Message sending Failed,check your internet or try again after some time"
+        );
       }
     });
-  }
+  };
 
   return (
-    <div style={{ width: "80rem", height: "420px",marginTop:"10px",boxShadow:"0px 0px 5px 4px",backgroundColor:"" }}>
+    <div
+      style={{
+        width: "80rem",
+        height: "420px",
+        marginTop: "10px",
+        boxShadow: "0px 0px 5px 4px",
+        backgroundColor: "",
+      }}
+    >
       <h3 style={{ textAlign: "center" }}>
         {" "}
         <b style={{ color: "goldenrod", textShadow: "initial" }}>
@@ -50,23 +60,30 @@ alert("your message has been successfully recieved by us.....thank u")
         }}
       >
         <form>
+        <label>PLEASE SELECT TYPE:</label>
+        <select ref={feedbackRef}>
+            <option>FEEDBACK</option>
+            <option>BUG</option>
+            <option>ERROR</option>
+            <option>FUNCTION NOT WORKING</option>
+          </select>
           <div>
             <input
-            ref={nameRef}
+              defaultValue={nameRef.current.value}
+              ref={nameRef}
               placeholder="NAME"
               style={{ width: "600px", margin: "20px 10px 10px 150px" }}
             ></input>
           </div>
           <div>
             <input
-            ref={emailRef}
+              ref={emailRef}
               placeholder="Contact No"
               style={{ width: "600px", margin: "20px 10px 10px 150px" }}
             ></input>
           </div>
           <div>
             <input
-            ref={messageref}
               placeholder="message"
               style={{
                 width: "600px",
@@ -75,15 +92,16 @@ alert("your message has been successfully recieved by us.....thank u")
               }}
             ></input>
           </div>
-
+          
+         
           <button
             style={{
               width: "300px",
               margin: "20px 10px 10px 280px",
               borderRadius: "10px",
-              boxShadow:"0px 0px 12px 5px black",
+              boxShadow: "0px 0px 12px 5px black",
               backgroundColor: "red",
-              color: "whitesmoke"
+              color: "whitesmoke",
             }}
             onClick={sendMessageHandler}
           >

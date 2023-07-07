@@ -80,7 +80,7 @@ const AllMail = () => {
         <div
           style={{
             display: "inline-flex",
-            boxShadow: "0px 0px 12px 5px",
+            boxShadow:  `${currentitem.read?"0px 0px 12px 5px green":"0px 0px 12px 5px blue"}`,
             width: "65rem",
           }}
         >
@@ -88,7 +88,7 @@ const AllMail = () => {
             {currentitem.read ? (
               ""
             ) : (
-              <b style={{ color: "blue", fontSize: "35px" }}>.</b>
+              <b style={{ color: "blue", fontSize: "35px"}}>.</b>
             )}
           </div>{" "}
           <div style={{ width: "12rem" }}>

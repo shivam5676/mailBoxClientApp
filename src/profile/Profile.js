@@ -3,9 +3,9 @@ import { Button, NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Profile = () => {
-  const [username, setuserName] = useState("not provided yet");
+  
   const getUser = localStorage.getItem("username");
-
+const [username, setuserName] = useState(getUser?getUser:"data not provided");
 
     useEffect(()=>{
       fetch(
