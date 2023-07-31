@@ -1,0 +1,24 @@
+.readcontainer{
+    grid-column: 2/4;
+    grid-row: 2/4;
+    margin: 20px;
+    box-shadow: 5px 10px 10px 6px black;
+    border-radius: 5px;
+
+}
+.userdetails{
+    display:block;
+    position: relative;
+    margin:10px;
+    justify-content: center;
+}
+.usermessage{
+    width:auto;
+    overflow-wrap:wrap;
+    margin:20px;
+    
+}
+.readcontainer>h2{
+    justify-content: center;
+    left:20%
+}

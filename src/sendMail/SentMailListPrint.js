@@ -5,10 +5,11 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Button, Nav } from "react-bootstrap";
 import DeleteEmail from "./deleteEmail";
 import { sentMailSliceActions } from "../store/mailRedux";
+import navcss from "./sentmail.module.css";
 
 const SentMailListPrint = () => {
   const sentList = useSelector((state) => state.sent.sentmail);
-const recieverName=localStorage.getItem("username")
+  const recieverName = localStorage.getItem("username");
   const senderEmail = localStorage
     .getItem("user")
     .replace("@", "")
@@ -37,50 +38,29 @@ const recieverName=localStorage.getItem("username")
         }
       });
   }, []);
- 
 
   let newArray = sentList.map((currentitem) => (
     <div key={currentitem.id}>
       <Link to={`/inbox/sender/${senderEmail}/${currentitem.id}`}>
-        <div
-          style={{
-            display: "inline-flex",
-            boxShadow: "0px 0px 12px 5px",
-            width: "65rem",
-          }}
-        >
-          <div style={{ width: "3rem" }}>
-            {currentitem.read ? (
-              ""
-            ) : (
-              <b style={{ color: "blue", fontSize: "35px" }}>.</b>
-            )}
-          </div>{" "}
-          <div style={{ width: "12rem" }}>
-            <p>
-              <b>{currentitem.senderName}</b>
+ 
+        <div className={navcss.maillist}>
+          <div className={navcss.readstatus}>o</div>
+          <div className={navcss.sender}>
+            <p className={navcss.sendername}>
+              {currentitem.reciever.split("@")[0]}
             </p>
+            <div className={navcss.sendermsg}>{currentitem.subject}</div>{" "}
+            {/* <DeleteEmail id={currentitem.id}></DeleteEmail> */}
           </div>
-          <div style={{ width: "35rem" }}>
-            {" "}
-            <h4>{currentitem.subject}</h4>
-          </div>
-          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
-            {currentitem.reciever}
-          </p>
         </div>
-      </Link>{" "}
-      <DeleteEmail id={currentitem.id}></DeleteEmail>
-      <hr></hr>
+      </Link>
     </div>
   ));
-  
-  if(sentList.length=="0")
-  {
-    newArray=<h3>no sent email present ,compose a new mail</h3>
-  }
- 
 
-  return <div style={{boxShadow:"0px 0px 9px 2px  black"}}>{newArray}</div>;
+  if (sentList.length == "0") {
+    newArray = <h3>no sent email present ,compose a new mail</h3>;
+  }
+
+  return <div className={navcss.maincontent}>{newArray}</div>;
 };
 export default SentMailListPrint;

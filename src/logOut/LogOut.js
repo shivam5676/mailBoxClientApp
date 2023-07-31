@@ -14,7 +14,7 @@ const LogOut = () => {
   };
 
   return (
-    <Button onClick={logoutHandler}  style={{ backgroundColor: "red"}}>
+    <Button onClick={logoutHandler}  style={{ backgroundColor: "red",width:"80px",fontWeight:"normal"}}>
      <b>LOGOUT</b> 
     </Button>
   );

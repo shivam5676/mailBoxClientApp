@@ -1,0 +1,74 @@
+
+.sidepanel {
+    grid-column: 1/2;
+    grid-row: 2/4;
+    background-color: aqua;
+    margin: 20px;
+    margin-left: 30px;
+    box-shadow: 3px 11px 12px black;
+    border-radius: 5px;
+  }  
+  .linkborder>a,.invisiblelink>a{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight:700;
+   margin-bottom:40px ;
+  }
+  a:active{
+    background-color:rgb(24, 24, 24);
+    color:rgb(251, 244, 244);
+    background-size: 100%;
+  
+  }
+ .linkborder{
+  /* box-shadow: 5px 5px 11px black; */
+  margin:10px
+ }
+
+ /* .visiblelink>button{
+  width:140px;
+  margin:20px 0px 0px 50px;
+  border-radius: 0px 5px 0px 20px;
+  background-color: violet;
+  height:50px;
+} */
+  @media (max-width: 992px){
+    .sidepanel {
+      margin: 20px 10px 20px 0px;
+      width:80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .visiblelink>button{
+      width:80px;
+      border-radius: 0px 5px 0px 20px;
+      background-color: violet;
+      height:50px;
+      margin:0;
+    }
+    .logoutbtn{
+      width:70px;
+      background-color: aqua;
+    }
+  }
+  @media (min-width:992px) {
+    .invisiblelink{
+      display: none;
+    }
+    .linkborder>a,.invisiblelink>a{
+      
+      font-weight:600;
+     margin-bottom:40px ;
+    }
+    .visiblelink>button{
+      width:140px;
+      margin:20px 0px 0px 50px;
+      border-radius: 0px 5px 0px 20px;
+      background-color: violet;
+      height:50px;
+      font-weight: bolder;
+    }
+    
+  }
+ 

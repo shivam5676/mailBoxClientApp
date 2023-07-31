@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { Container } from "react-bootstrap";
+
+import navcss from "./contact.module.css";
 
 const Contact = () => {
   const senderEmail = localStorage.getItem("user");
@@ -35,80 +36,37 @@ const Contact = () => {
   };
 
   return (
-    <div
-      style={{
-        width: "80rem",
-        height: "420px",
-        marginTop: "10px",
-        boxShadow: "0px 0px 5px 4px",
-        backgroundColor: "",
-      }}
-    >
-      <h3 style={{ textAlign: "center" }}>
-        {" "}
-        <b style={{ color: "goldenrod", textShadow: "initial" }}>
-          CONTACT FORM
-        </b>
-      </h3>
-      <Container
-        style={{
-          borderBlockStyle: "double",
-          backgroundColor: "pink",
-          width: "60rem",
-          boxShadow: "10px 12px 19px #F4AAB9",
-          borderRadius: "10px",
-        }}
-      >
-        <form>
-        <label>PLEASE SELECT TYPE:</label>
-        <select ref={feedbackRef}>
+    <div className={navcss.maincontent}>
+     
+      <div className={navcss.formbox}>
+        <form className={navcss.forms}> <p className={navcss.contacttext}>CONTACT FORM</p>
+        <hr></hr>
+          <p>PLEASE SELECT TYPE:</p>
+          <select ref={feedbackRef} className={navcss.feedback}>
             <option>FEEDBACK</option>
             <option>BUG</option>
             <option>ERROR</option>
             <option>FUNCTION NOT WORKING</option>
           </select>
-          <div>
+          <div className={navcss.inputs}>
             <input
               defaultValue={nameRef.current.value}
               ref={nameRef}
               placeholder="NAME"
-              style={{ width: "600px", margin: "20px 10px 10px 150px" }}
             ></input>
           </div>
-          <div>
-            <input
-              ref={emailRef}
-              placeholder="Contact No"
-              style={{ width: "600px", margin: "20px 10px 10px 150px" }}
-            ></input>
+          <div className={navcss.inputs}>
+            <input ref={emailRef} placeholder="Contact No"></input>
           </div>
-          <div>
-            <input
-              placeholder="message"
-              style={{
-                width: "600px",
-                margin: "20px 10px 10px 150px",
-                height: "100px",
-              }}
-            ></input>
+          <div className={navcss.inputs}>
+            <input placeholder="message" className={navcss.msginput}></input>
           </div>
-          
-         
-          <button
-            style={{
-              width: "300px",
-              margin: "20px 10px 10px 280px",
-              borderRadius: "10px",
-              boxShadow: "0px 0px 12px 5px black",
-              backgroundColor: "red",
-              color: "whitesmoke",
-            }}
-            onClick={sendMessageHandler}
-          >
-            <b>Send contact Details</b>
+
+          <button onClick={sendMessageHandler} className={navcss.buttonsignup}>
+            Send contact Details
           </button>
         </form>
-      </Container>
+      </div>
     </div>
   );
 };

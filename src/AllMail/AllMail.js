@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { allMailSliceActions } from "../store/mailRedux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import navcss from "./Allmail.module.css";
 
 const AllMail = () => {
-  useEffect(()=>{
+  useEffect(() => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD1Zg5nW23hWuRY7a1UXWyDPxGGleq3_SM",
       {
@@ -27,13 +28,13 @@ const AllMail = () => {
       })
       .then((response) => {
         localStorage.setItem("username", response.users[0].displayName);
-        localStorage.setItem("user",response.users[0].email)
+        localStorage.setItem("user", response.users[0].email);
         // setuserName(localStorage.getItem("username"))
       })
       .catch((err) => {
         console.log(err);
       });
-  },[])
+  }, []);
   let RecieverEmail = localStorage.getItem("user");
   if (RecieverEmail) {
     RecieverEmail = RecieverEmail.replace("@", "").replace(".", "");
@@ -77,41 +78,20 @@ const AllMail = () => {
   let newArray = recieveList.map((currentitem) => (
     <div key={currentitem.id}>
       <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}>
-        <div
-          style={{
-            display: "inline-flex",
-            boxShadow:  `${currentitem.read?"0px 0px 12px 5px green":"0px 0px 12px 5px blue"}`,
-            width: "65rem",
-          }}
-        >
-          <div style={{ width: "3rem" }}>
-            {currentitem.read ? (
-              ""
-            ) : (
-              <b style={{ color: "blue", fontSize: "35px"}}>.</b>
-            )}
-          </div>{" "}
-          <div style={{ width: "12rem" }}>
-            <p>
-              <b>{currentitem.senderName}</b>
-            </p>
+        <div className={navcss.maillist}>
+          <div className={navcss.readstatus}>o</div>
+          <div className={navcss.sender}>
+            <p className={navcss.sendername}>{currentitem.senderName}</p>
+            <div className={navcss.sendermsg}>{currentitem.subject}</div>
           </div>
-          <div style={{ width: "35rem" }}>
-            {" "}
-            <h4>{currentitem.subject}</h4>
-          </div>
-          <p style={{ display: "inline-flex", margin: "0px 100px 0px 70px" }}>
-            {currentitem.sender}
-          </p>
         </div>
       </Link>
-      <hr></hr>
     </div>
   ));
   if (recieveList.length == "0") {
     newArray = <h3>inbox is empty</h3>;
   }
 
-  return <div>{newArray}</div>;
+  return <div className={navcss.maincontent}>{newArray}</div>;
 };
 export default AllMail;

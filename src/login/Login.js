@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { LoggedInSliceActions } from "../store/mailRedux";
+import navcss from "./Login.module.css";
 const Login = () => {
   const [loginIsSuccessful, setLoginIsSuccessful] = useState(
     localStorage.getItem("key")
@@ -92,7 +92,6 @@ const Login = () => {
           .then((response) => {
             localStorage.setItem("username", response.users[0].displayName);
             localStorage.setItem("user", response.users[0].email);
-            
           });
 
         setLoginIsSuccessful(true);
@@ -104,75 +103,26 @@ const Login = () => {
   if (loginIsSuccessful) {
     return <Redirect to="/inbox"></Redirect>;
   }
+
   return (
-    <div style={{ height: "300px" }}>
-      <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
-        <b
-          style={{
-            backgroundColor: "yellow",
-            boxShadow: "10px 7px 10px black",
-            borderRadius: "10px",
-          }}
-        >
-          LOGIN PAGE
-        </b>
-      </h3>
-      <div
-        style={{
-          backgroundColor: "yellowgreen",
-          color: "white",
-
-          width: "55rem",
-          height: "170px",
-          margin: "20px 30px 10px 120px",
-          boxShadow: "10px 7px 10px black",
-          borderRadius: "10px",
-        }}
-      >
-        <form>
-          {" "}
-          <div>
-            {" "}
-            <input
-              style={{
-                backgroundColor: "black",
-                color: "white",
-
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-              placeholder="email"
-              ref={emailHandler}
-              type="email"
-            ></input>
-          </div>
-          <div>
-            {" "}
-            <input
-              style={{
-                backgroundColor: "black",
-                color: "white",
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-              placeholder="passsword"
-              ref={passwordHandler}
-              type="password"
-            ></input>
-          </div>
-          <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
-            <Button variant="primary" onClick={LoginDataHandler}>
-              LOGIN
-            </Button>
-            <b style={{ margin: "10px" }}>
-              {" "}
-              <Link to="/signup">
-                Don`t have an account! create a new one
-              </Link>{" "}
-            </b>
-          </div>
-        </form>
-      </div>
+    <div className={navcss.containers}>
+      <form className={navcss.formcontrol}>
+        <div className={navcss.inputs}>
+          <input placeholder="email" ref={emailHandler} type="email"></input>
+        </div>
+        <div className={navcss.inputs}>
+        <input
+          placeholder="passsword"
+          ref={passwordHandler}
+          type="password"
+        ></input></div>
+        <button variant="primary" onClick={LoginDataHandler} className={navcss.loginbtn}>
+          LOGIN
+        </button>
+        <p className={navcss.signuplink}>
+          <Link to="/signup">Don`t have an account! create a new one</Link>{" "}
+        </p>
+      </form>
     </div>
   );
 };

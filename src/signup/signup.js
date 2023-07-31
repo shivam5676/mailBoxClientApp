@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
-
+import navcss from "./signup.module.css";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
 
 const Signup = () => {
-  
   // const nameHandler = useRef("not provided");
   const emailHandler = useRef();
   const passwordHandler = useRef();
@@ -51,104 +50,51 @@ const Signup = () => {
         console.log(response);
         localStorage.setItem("user", response.email);
         localStorage.setItem("token", response.idToken);
-       setRedirect(true)
-       alert("account successfully created,store these email and password for login")
-
+        setRedirect(true);
+        alert(
+          "account successfully created,store these email and password for login"
+        );
       })
       .catch((err) => {
         console.log(err);
-        alert("account not created ,pleasee check ur internet connection or try again later")
+        alert(
+          "account not created ,pleasee check ur internet connection or try again later"
+        );
       });
-  };const [redirect,setRedirect]=useState(false)
-  console.log(redirect)
-  if(redirect){
+  };
+  const [redirect, setRedirect] = useState(false);
+  console.log(redirect);
+  if (redirect) {
     console.log("executed redirection");
-    return <Redirect to="/profileDetails"></Redirect>
+    return <Redirect to="/profileDetails"></Redirect>;
   }
   return (
-    <div style={{ height: "350px" }}>
-      <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
-        <b
-          style={{
-            backgroundColor: "yellow",
-            boxShadow: "10px 7px 10px black",
-            borderRadius: "10px",
-          }}
-        >
-          SIGNUP PAGE
+    <div className={navcss.containers}>
+      <form className={navcss.formcontrol}>
+        <div className={navcss.inputs}>
+          <input placeholder="email" ref={emailHandler} type="email"></input>
+        </div>
+        <div className={navcss.inputs}>
+          <input
+            placeholder="passsword"
+            ref={passwordHandler}
+            type="password"
+          ></input>
+        </div>
+        <div className={navcss.inputs}>
+          <input
+            placeholder="confirm passsword"
+            ref={confirmPasswordHandler}
+            type="password"
+          ></input>
+        </div>
+        <button variant="primary" onClick={submitDataHandler} className={navcss.Signupbutton}>
+          SignUp
+        </button>
+        <b>
+          <Link to="/auth">Already have an Account! Login</Link>{" "}
         </b>
-      </h3>
-      <div
-        style={{
-          backgroundColor: "yellowgreen",
-          color: "white",
-
-          width: "55rem",
-          height: "270px",
-          margin: "10px 30px 10px 120px",
-          boxShadow: "10px 7px 10px black",
-          borderRadius: "10px",
-        }}
-      >
-        <form style={{ display: "block" }}>
-          <div style={{ display: "block" }}>
-            <div>
-              <input
-                type="email"
-                placeholder="EMAIL"
-                ref={emailHandler}
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-
-                  width: "40rem",
-                  margin: "10px 0px 10px 120px",
-                }}
-              ></input>
-            </div>
-            <div>
-              {" "}
-              <input
-                type="password"
-                placeholder="PASSWORD"
-                ref={passwordHandler}
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-
-                  width: "40rem",
-                  margin: "10px 0px 10px 120px",
-                }}
-              ></input>
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="CONFIRM PASSWORD"
-                ref={confirmPasswordHandler}
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-
-                  width: "40rem",
-                  margin: "10px 0px 10px 120px",
-                }}
-              ></input>
-            </div>
-
-            <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
-              {" "}
-              <Button variant="primary" onClick={submitDataHandler}>
-                SIGNUP
-              </Button>
-              <b style={{ margin: "10px" }}>
-                {" "}
-                <Link to="/auth">Already have an Account! Login</Link>
-              </b>
-            </div>
-          </div>
-        </form>
-      </div>
+      </form>
     </div>
   );
 };

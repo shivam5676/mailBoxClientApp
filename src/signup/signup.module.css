@@ -1,0 +1,64 @@
+/* Add this CSS to your Login.module.css file or create a new CSS file and import it */
+
+.containers {
+    grid-column: 1/4;
+    grid-row: 2/4;
+     display: flex;
+     justify-content: center;
+     /* align-items: center; */
+     height: 90vh;
+     width:100%;
+     background-image: url("./signup.jpg");
+     background-repeat: no-repeat;
+     background-size:100% 100vh;
+   }
+   
+   .formcontrol {
+     display: flex;
+     flex-direction: column;
+     width: 600px;
+     height:350px;
+     background-color: rgba(255, 187, 0,.9);
+     margin:10%;
+     border-radius: 15px;
+   }
+   
+   .inputs {
+     padding: 10px;
+     margin: 15px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+   }
+  .inputs> input{
+     padding: 10px;
+     margin: 10px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     width:95%;
+     background-color: black;
+     font-weight: bold;
+   }
+   
+   
+  .Signupbutton {
+     padding: 10px;
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     border-radius: 15px;
+     cursor: pointer;
+     font-weight: bolder;
+     
+   }
+   
+   b {
+     text-align: center;
+   }
+   
+   /* Add media queries for responsiveness */
+   @media screen and (max-width: 480px) {
+     .formcontrol {
+       width: 100%;
+     }
+   }
+   

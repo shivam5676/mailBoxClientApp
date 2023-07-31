@@ -1,0 +1,65 @@
+.maincontent {
+  grid-column: 2/4;
+  grid-row: 2/4;
+  margin: 20px;
+  display:flex;
+  justify-content: center;
+  align-items:normal;
+  background-image: url("./contact.jpg");
+  background-size: 100% 100%;
+}
+
+.formbox {
+  display: flex;
+  flex-direction: column;
+  bottom: 100px;
+}
+.forms {
+  position: relative;
+
+  top: 100px;
+  background-color: yellowgreen;
+  height: auto;
+  max-width: 500px;
+  padding: 10px 30px 20px 30px;
+  border-radius: 15px;
+  /* margin:10%; */
+}
+
+.msginput {
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.inputs {
+  margin: 10px;
+  width: 400px ;
+}
+.inputs>input{
+  width:100%;
+}
+
+.contacttext {
+  font-size: medium;
+  font-weight: bolder;
+
+  
+}
+
+
+@media (max-width: 567px) {
+
+
+  .forms {
+   /* margin: 10%; */
+   width:100%
+  }
+  .inputs {
+    margin: 10px;
+    width: 100%;
+  }
+  .feedback {
+    margin: 10px;
+    width: 100%;
+  }
+}
