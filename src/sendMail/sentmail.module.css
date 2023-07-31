@@ -22,7 +22,7 @@
 
 .readstatus {
   width: 10px;
-  background-color: white;
+ 
   height: 30px;
   margin: 10px;
 }
@@ -60,7 +60,7 @@
     text-overflow: ellipsis;
   }
   .sendermsg {
-    width: 130px;
+    width: 180px;
     font-weight: 600;
     color: black;
     margin-left: 30px;
@@ -75,7 +75,7 @@
 
 @media (min-width: 1200px) {
   .sendermsg {
-    width: 400px;
+    width: 600px;
     margin-left: 120px;
   }
 }

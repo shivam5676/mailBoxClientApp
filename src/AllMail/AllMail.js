@@ -3,6 +3,7 @@ import { allMailSliceActions } from "../store/mailRedux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import navcss from "./Allmail.module.css";
+import { TbPointFilled } from "react-icons/tb";
 
 const AllMail = () => {
   useEffect(() => {
@@ -71,15 +72,22 @@ const AllMail = () => {
             });
           }
         });
-    }, 2000);
+    }, 500);
     return () => clearInterval(interval);
   }, []);
   const recieveList = useSelector((state) => state.all.allmail);
   let newArray = recieveList.map((currentitem) => (
-    <div key={currentitem.id}  className={navcss.linkstyle}>
-      <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`} >
+    <div key={currentitem.id} className={navcss.linkstyle}>
+      <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}>
         <div className={navcss.maillist}>
-          <div className={navcss.readstatus}>o</div>
+          {!currentitem.read ? (
+            <div className={navcss.readstatus}>
+              <TbPointFilled></TbPointFilled>
+            </div>
+          ) : (
+            <div className={navcss.readstatus}></div>
+          )}
+
           <div className={navcss.sender}>
             <p className={navcss.sendername}>{currentitem.senderName}</p>
             <div className={navcss.sendermsg}>{currentitem.subject}</div>

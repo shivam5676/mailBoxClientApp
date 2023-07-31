@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { LoggedInSliceActions } from "../store/mailRedux";
+import navcss from "./profiledetails.module.css"
 
 const ProfileDetails = () => {
   const [redirect, setRedirect] = useState(false);
@@ -52,52 +53,14 @@ const ProfileDetails = () => {
   }
 
   return (
-    <div>
-      <h3 style={{ marginLeft: "400px", marginBottom: "30px" }}>
-        <b
-          style={{
-            backgroundColor: "yellow",
-            boxShadow: "10px 7px 10px black",
-            borderRadius: "10px",
-          }}
-        >
-          USER UPDATE DETAILS PANEL
-        </b>
-      </h3>
-      <div
-        style={{
-          backgroundColor: "yellowgreen",
-          color: "white",
-
-          width: "55rem",
-          height: "170px",
-          margin: "20px 30px 10px 120px",
-          boxShadow: "10px 7px 10px black",
-          borderRadius: "10px",
-        }}
-      >
-        <form>
-          {" "}
-          <div>
-            <p><h2>Name Update</h2></p>
-            {" "}
-            <input
-              style={{
-                backgroundColor: "black",
-                color: "white",
-
-                width: "40rem",
-                margin: "10px 0px 10px 120px",
-              }}
-              placeholder="Name"
-              ref={nameHandler}
-            ></input>
-          </div>
-          <div style={{ width: "40rem", margin: "10px 0px 10px 120px" }}>
-            <Button variant="primary" onClick={UserDataSaver}>
+    <div className={navcss.mainbox}>
+      <div className={navcss.formbox}>
+        <p className={navcss.namepara}>user name update panel</p>
+        <form className={navcss.form}>
+          <input placeholder="enter name " ref={nameHandler}></input>
+          <button onClick={UserDataSaver}>
               UPDATE NAME
-            </Button>
-          </div>
+            </button>
         </form>
       </div>
     </div>

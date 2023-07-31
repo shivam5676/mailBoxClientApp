@@ -1,19 +1,22 @@
-// import { Button, Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import navcss from "./sidepanel.module.css";
 import LogOuts from "../logOut/LogOut";
+
 const SidePanel = () => {
   const unreadmsg = useSelector((state) => state.all.unread);
 
   return (
     <div className={navcss.sidepanel}>
       <div className={navcss.visiblelink}>
-        <button>Compose</button>
+        <NavLink to="/compose" >
+          <div className={navcss.composebutton}>Compose</div>
+        </NavLink>
         <hr></hr>
 
         <div className={navcss.linkborder}>
           <NavLink to="/inbox">Inbox</NavLink>
+          <span>{unreadmsg}</span>
         </div>
         <hr></hr>
 

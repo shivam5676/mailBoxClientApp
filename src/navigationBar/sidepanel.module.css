@@ -14,7 +14,7 @@
     font-weight:700;
    margin-bottom:40px ;
   }
-  a:active{
+  .linkborder>:active{
     background-color:rgb(24, 24, 24);
     color:rgb(251, 244, 244);
     background-size: 100%;
@@ -25,13 +25,25 @@
   margin:10px
  }
 
- /* .visiblelink>button{
-  width:140px;
-  margin:20px 0px 0px 50px;
-  border-radius: 0px 5px 0px 20px;
-  background-color: violet;
-  height:50px;
-} */
+ .linkborder>span{
+  margin-left:5px;
+  background-color: crimson;
+  color:white;
+  font-weight: 900;
+ }
+.visiblelink>a{
+  text-decoration: none;
+  display:flex;
+}
+.composebutton {
+
+  display: flex; /* Add display flex to make the contents flex items */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  color:white;
+  font-weight: bolder;
+}
+
   @media (max-width: 992px){
     .sidepanel {
       margin: 20px 10px 20px 0px;
@@ -40,7 +52,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .visiblelink>button{
+    .composebutton{
       width:80px;
       border-radius: 0px 5px 0px 20px;
       background-color: violet;
@@ -61,13 +73,13 @@
       font-weight:600;
      margin-bottom:40px ;
     }
-    .visiblelink>button{
+    .composebutton{
       width:140px;
       margin:20px 0px 0px 50px;
       border-radius: 0px 5px 0px 20px;
       background-color: violet;
       height:50px;
-      font-weight: bolder;
+     
     }
     
   }

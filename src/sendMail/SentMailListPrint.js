@@ -6,6 +6,7 @@ import { Button, Nav } from "react-bootstrap";
 import DeleteEmail from "./deleteEmail";
 import { sentMailSliceActions } from "../store/mailRedux";
 import navcss from "./sentmail.module.css";
+import { TbPointFilled } from "react-icons/tb";
 
 const SentMailListPrint = () => {
   const sentList = useSelector((state) => state.sent.sentmail);
@@ -44,7 +45,8 @@ const SentMailListPrint = () => {
       <Link to={`/inbox/sender/${senderEmail}/${currentitem.id}`}>
  
         <div className={navcss.maillist}>
-          <div className={navcss.readstatus}>o</div>
+        {!currentitem.read ?<div className={navcss.readstatus}><TbPointFilled></TbPointFilled></div>:<div className={navcss.readstatus}></div>}
+          
           <div className={navcss.sender}>
             <p className={navcss.sendername}>
               {currentitem.reciever.split("@")[0]}

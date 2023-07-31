@@ -1,0 +1,73 @@
+.middlebox {
+  grid-column: 2/3;
+  grid-row: 2/4;
+  
+  margin: 20px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilebox {
+  background-color: yellow;
+  width: auto;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  }
+.userdetails {
+  background-color: rgb(255, 0, 106);
+  width: 300px;
+  height: 100%;
+  display: flex;
+}
+.namecategory {
+  color: white;
+  font-weight: 900;
+  margin: 50px 20px 20px 20px;
+  width: 70px;
+}
+.nameprovider {
+  color: white;
+  font-weight: 900;
+  margin: 50px 0px 0px 0px;
+}
+.nameprovider > p,
+.namecategory > p {
+  margin-bottom: 20px;
+}
+
+.userphoto {
+  background-color: aqua;
+  width: 200px;
+  height: 100%;
+  /* display: flex; */
+
+}
+.userphoto > .image{
+  border: 3px solid black;
+  height: 150px;
+}
+.userphoto>.divbutton{
+  display: flex;
+    justify-content: center;
+    align-content: center;
+   margin-top: 30px;
+    
+}
+
+/* 
+.sidebox{
+    grid-column: 3/4;
+    grid-row: 2/4;
+    background-color: cyan;
+    margin:20px
+} */
+@media(max-width:778px){
+.userdetails{
+  width:auto;
+}
+.userphoto{
+  width:auto;
+}
+}
