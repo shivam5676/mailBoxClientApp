@@ -112,7 +112,7 @@ const Login = () => {
         </div>
         <div className={navcss.inputs}>
         <input
-          placeholder="passsword"
+          placeholder="password"
           ref={passwordHandler}
           type="password"
         ></input></div>

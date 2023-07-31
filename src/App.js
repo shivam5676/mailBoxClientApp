@@ -76,12 +76,13 @@ function App() {
         ) : (
           ""
         )}
-        <Route path="/features">
+        {loginState ? <Route path="/features">
           <ProjectFeature></ProjectFeature>
-        </Route>
-        <Route path="/contact">
+        </Route>:""}
+        
+       {loginState ? <Route path="/contact">
           <Contact></Contact>
-        </Route>
+        </Route>:""} 
 
         <Route path="/signup">
           {!loginState ? <Signup></Signup> : "/inbox"}

@@ -5,9 +5,9 @@
   grid-row: 2/4;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   height: 90vh;
-  background-image: url("./login.jpg");
+  background-image: url("../../public/image/login.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

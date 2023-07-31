@@ -76,14 +76,14 @@ const Signup = () => {
         </div>
         <div className={navcss.inputs}>
           <input
-            placeholder="passsword"
+            placeholder="password"
             ref={passwordHandler}
             type="password"
           ></input>
         </div>
         <div className={navcss.inputs}>
           <input
-            placeholder="confirm passsword"
+            placeholder="confirm password"
             ref={confirmPasswordHandler}
             type="password"
           ></input>

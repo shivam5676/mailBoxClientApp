@@ -76,8 +76,8 @@ const AllMail = () => {
   }, []);
   const recieveList = useSelector((state) => state.all.allmail);
   let newArray = recieveList.map((currentitem) => (
-    <div key={currentitem.id}>
-      <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`}>
+    <div key={currentitem.id}  className={navcss.linkstyle}>
+      <Link to={`/inbox/reciever/${RecieverEmail}/${currentitem.id}`} >
         <div className={navcss.maillist}>
           <div className={navcss.readstatus}>o</div>
           <div className={navcss.sender}>
