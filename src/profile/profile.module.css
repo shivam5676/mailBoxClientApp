@@ -62,7 +62,10 @@
     grid-row: 2/4;
     background-color: cyan;
     margin:20px
-} */
+}
+ */
+
+
 @media(max-width:778px){
 .userdetails{
   width:auto;
